@@ -1,6 +1,6 @@
 # Passbook
 
-[![Build Status](https://travis-ci.org/tarebyte/passbook.svg)](https://travis-ci.org/tarebyte/passbook)
+[![Build Status](https://travis-ci.org/frozon/passbook.svg)](https://travis-ci.org/frozon/passbook)
 
 The passbook gem let's you create a pkpass for passbook in iOS 6+
 
