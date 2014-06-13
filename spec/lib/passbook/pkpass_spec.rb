@@ -54,10 +54,8 @@ describe Passbook  do
         before do
           Passbook.should_receive(:p12_key).twice.and_return 'my_p12_key'
           Passbook.should_receive(:p12_certificate).and_return 'my_p12_certificate'
-          File.should_receive(:read).with('my_p12_key').and_return 'my_p12_key_file'
-          File.should_receive(:read).with('my_p12_certificate').and_return 'my_p12_certificate_file'
-          OpenSSL::PKey::RSA.should_receive(:new).with('my_p12_key_file', 'password').and_return 'my_rsa_key'
-          OpenSSL::X509::Certificate.should_receive(:new).with('my_p12_certificate_file').and_return 'my_ssl_p12_cert'
+          OpenSSL::PKey::RSA.should_receive(:new).with('my_p12_key', 'password').and_return 'my_rsa_key'
+          OpenSSL::X509::Certificate.should_receive(:new).with('my_p12_certificate').and_return 'my_ssl_p12_cert'
         end
 
         subject {pass.get_p12_cert_and_key}
@@ -73,8 +71,7 @@ describe Passbook  do
           p12.should_receive(:certificate).and_return final_hash[:cert]
           Passbook.should_receive(:p12_key).and_return nil
           Passbook.should_receive(:p12_cert).and_return 'my_p12_cert'
-          File.should_receive(:read).with('my_p12_cert').and_return 'my_p12_cert_file'
-          OpenSSL::PKCS12.should_receive(:new).with('my_p12_cert_file', 'password').and_return p12
+          OpenSSL::PKCS12.should_receive(:new).with('my_p12_cert', 'password').and_return p12
         end
 
         subject {pass.get_p12_cert_and_key}
